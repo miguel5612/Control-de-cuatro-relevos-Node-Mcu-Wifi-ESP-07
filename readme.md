@@ -7,13 +7,14 @@ Para esto se conectan 6 relevos en los pines  ( 4,5,12,13,14,16) correspondiente
 y se programo con la interfaz FDTI  A 3.3 VDC, se empleo dos fuentes de alimentacion , una para los
 relevos y una para el ESP-07 para evitar problemas de falla de corriente.
 
-==========
+
 
 requisitos:
-
 --------------------
 
+
 Hardware:
+--------------------
 
 + ESP-07.
 + Modulo de 6 relevos x 2 unidades.
@@ -26,11 +27,13 @@ Hardware para programar:
 
 
 Software:
+--------------------
 
 + Arduino ide (www.arduino.cc).
 + Arduino board manager for ESP module --> https://github.com/esp8266/Arduino/releases/download/2.4.0-rc1/package_esp8266com_index.json
 
 Contacto:
+--------------------
 
 + gaymersteevenmv@ufps.edu.co
 + Jhonatanricardomg@ufps.edu.co
