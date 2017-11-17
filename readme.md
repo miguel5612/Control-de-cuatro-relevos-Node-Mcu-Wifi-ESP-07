@@ -22,6 +22,7 @@ Hardware:
 + 2 adaptadores DC 12V.
 
 Hardware para programar:
+--------------------
 
 + Tarjeta programadora serial FDTI 3.3V 
 
