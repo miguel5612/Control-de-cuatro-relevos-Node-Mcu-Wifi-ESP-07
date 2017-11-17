@@ -10,6 +10,7 @@ MDNSResponder mdns;
 const char* ssid = "construpinos";
 const char* password = "C5j23h42";
 int Reles[]= {4,5,12,13,14,16};//array to store pin nos
+int contador = 0;
 
 ESP8266WebServer server(80);
 
@@ -18,7 +19,7 @@ String webPage = "";
 //int gpio2_pin = 5;
 
 void setup(void){
-  webPage += "<style>.caja{color:white;font-style: bold;margin:20px;text-align:center;}.pie{color:white;font-style: bold;margin:20px;text-align: left;font-size:20px;text-align:center;margin-top:20px;}.nombres{color:white;font-style: bold;margin:20px;text-align: left;font-size:15px;}.botones{margin:10px;margin-left:0.1%;}</style><div style='background-color:green; width: 100%;height: 100%'><h1 style='color:white;font-style:bold;text-align:center'>Control Wi-Fi para iluminacion - Ferreteria Construrama los pinos</h1><div class='caja'><p>1. Luz frontal </p><a class='botones' href='socket1Off/'><button>ON</button></a><a class='botones' href='socket1On/'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>2. Luz principal.</p><a class='botones' href='socket2Off/'><button>ON</button></a><a class='botones' href='socket2On/'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>3. Bodega 1. </p><a class='botones' href='socket3Off/'><button>ON</button></a>&nbsp;<a class='botones' href='socket3On/'><button>OFF</button></a></div><div class='caja'><p>4. Bodega 2.</p><a class='botones' href='socket4Off/'><button>ON</button></a><a class='botones' href='socket4On/'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>5. Oficina.</p><a class='botones' href='socket5Off/'><button>ON</button></a>&nbsp;<a class='botones' href='socket5On/'><button>OFF</button></a></div><div class='caja'><p>6. Bano.</p><a class='botones' href='socket6Off/'><button>ON</button></a><a class='botones' href='socket6On/'><button>OFF</button></a>&nbsp;</div><footer class='pie'><p>Integrantes de ingenieria electronica</p><a class='nombres' href='mailto:gaymersteevenmv@ufps.edu.co'>Gaymer Mendoza</a><a class='nombres' href='mailto:Jhonatanricardomg@ufps.edu.co'>Jhonatan Montoya</a><a class='nombres' href='mailto:yormanalexanderm@ufps.edu.co'>Yorman Mendoza</a></footer></div>";
+  webPage += "<style>.caja{color:white;font-style: bold;margin:20px;text-align:center;}.pie{color:white;font-style: bold;margin:20px;text-align: left;font-size:20px;text-align:center;margin-top:20px;}.nombres{color:white;font-style: bold;margin:20px;text-align: left;font-size:15px;}.botones{margin:10px;margin-left:0.1%;}</style><div style='background-color:green; width: 100%;height: 100%'><h1 style='color:white;font-style:bold;text-align:center'>Control Wi-Fi para iluminacion - Ferreteria Construrama los pinos</h1><div class='caja'><p>1. Luz frontal </p><a class='botones' href='socket1Off'><button>ON</button></a><a class='botones' href='socket1On'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>2. Luz principal.</p><a class='botones' href='socket2Off'><button>ON</button></a><a class='botones' href='socket2On'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>3. Bodega 1. </p><a class='botones' href='socket3Off'><button>ON</button></a>&nbsp;<a class='botones' href='socket3On'><button>OFF</button></a></div><div class='caja'><p>4. Bodega 2.</p><a class='botones' href='socket4Off'><button>ON</button></a><a class='botones' href='socket4On'><button>OFF</button></a>&nbsp;</div><div class='caja'><p>5. Oficina.</p><a class='botones' href='socket5Off'><button>ON</button></a>&nbsp;<a class='botones' href='socket5On'><button>OFF</button></a></div><div class='caja'><p>6. Bano.</p><a class='botones' href='socket6Off'><button>ON</button></a><a class='botones' href='socket6On'><button>OFF</button></a>&nbsp;</div><footer class='pie'><p>Integrantes de ingenieria electronica</p><a class='nombres' href='mailto:gaymersteevenmv@ufps.edu.co'>Gaymer Mendoza</a><a class='nombres' href='mailto:Jhonatanricardomg@ufps.edu.co'>Jhonatan Montoya</a><a class='nombres' href='mailto:yormanalexanderm@ufps.edu.co'>Yorman Mendoza</a></footer></div>";
   // preparing GPIOs
     for(int i = 0; i<6 ; i++)
     {
@@ -32,9 +33,11 @@ void setup(void){
   Serial.println("");
 
   // Wait for connection
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED && contador<60) {
     delay(500);
     Serial.print(".");
+    Serial.print(contador);
+    contador = contador + 1 ;
   }
   Serial.println("");
   Serial.print("Connected to ");
